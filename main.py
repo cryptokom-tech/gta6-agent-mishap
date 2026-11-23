@@ -23,6 +23,9 @@ def main():
     if text != text.strip() or not text:
         print("entry is blank or padded", file=sys.stderr)
         return 1
+    if "\n" in text or "\r" in text:
+        print("entry must be a single sentence on one line", file=sys.stderr)
+        return 1
     path = os.path.join(out_dir, "entry.txt")
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
